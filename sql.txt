@@ -1,0 +1,8 @@
+CREATE TABLE receive(
+  id int not null primary key auto_increment,
+  sender varchar(20) not null,
+  title varchar(100),
+  stime datetime not null,
+  content varchar(200),
+  isread tinyint(1)
+  )
