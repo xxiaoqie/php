@@ -6,6 +6,16 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <script src="js/jquery-2.1.1.js"></script>
 <style>
+	.text-overflow() {
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	  white-space: nowrap;
+	}
+
+	.info {
+	  display: inline-block;
+	  .text-overflow();
+	}
 </style>
 <script>
         function del(id){
@@ -49,9 +59,6 @@
 </head>
 
 <body>
-<?php
-include_once("conn/conn.php");
-?>
 <nav style="position: absolute;height:100px;width:200px">12123123</nav>
 <div style="position: relative !important; margin-left:200px;padding:10px" class="container-fluid">
 	<div> <a class="btn btn-default btn-sm" href="javascript:void(0);" id="delSelected">删除选中</a></div>
@@ -59,34 +66,26 @@ include_once("conn/conn.php");
 		<form id="form" action="del.php" method="post">
 			<table class="table table-hover table-condensed">
 				<tr class="success">
-					<th width="1%" class=""><input type="checkbox" id="firstCb"></th>
+					<th><input type="checkbox" id="firstCb"></th>
 					<th><table width="100%"><tr>
-						<td width="20%">发件人</td>
-						<td width="60%">主题</td>
-						<td width="20%">时间</td>
+						<td width="20%">发件人</td> 
+						<td width="60%">主题</td>	
+						<td width="20%">时间</td>	
 					</tr></table></th>
-					<th width="5%">操作</th>
+					<th>操作</th>
 				</tr>
-				<?php
-					$sqlstr = "select * from receive order by id";
-					$result = mysqli_query($conn,$sqlstr);
-					while( $rows = mysqli_fetch_array($result) ) {
-				?>
 				<tr>
 					<td><input type="checkbox" name="chk[]" value="<?php echo $rows['id']; ?>"/> </td>
-					<td>
+					<td  class="text-overflow">
 						<a style="text-decoration:none" href="readmail.php?id=<?php echo $rows['id'];?>"><table width="100%"><tr>
-							<td width="20%"><?php echo $rows['sender']; ?></td>
-							<td width="60%"><?php echo $rows['title']; ?></td>
-							<td width="20%"><?php echo $rows['stime']; ?></td>
+							<td style="text-overflow:ellipsis;overflow:hidden;display:inline-block;" width="20%">sendersendersendersendersendersendersendersendersendersendersendersendersendersender</td>
+							<td style="text-overflow:ellipsis;overflow:hidden;display:inline-block;" width="60%">titletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitle</td>
+							<td style="text-overflow:ellipsis;overflow:hidden;display:inline-block;" width="20%">timetimetimetimetimetimetimetimetimetimetimetimetimetimetimetimetimetimetimetimetimetimetimetimetimetimetime</td>
 						</tr></table></a>
 					</td>
 					<td><a href="#" onclick="del(<?php echo $rows['id'];?>)">删除</a></td>
 				</tr>
-				<?php 
-					}
-				?>
-		</table>
+			</table>
 		</form>
 	</div>
 	<div> <a class="btn btn-default btn-sm" href="javascript:void(0);" id="delSelected">删除选中</a></div>
