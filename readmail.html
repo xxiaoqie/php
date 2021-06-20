@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/bootstrap.min.css" rel="stylesheet" />
+<link href="css/style.css" rel="stylesheet" />
 <?php include_once("conn/conn.php"); ?>
 <?php 
 $sqlstr = "select * from receive where id = ".$_GET['id'];
@@ -13,13 +14,13 @@ $row = mysqli_fetch_array($result)
 </head>
 
 <body>
-<nav style="position: absolute;height:100px;width:100px">12123123</nav>
-<div style="position: relative !important; margin-left:100px;padding:10px" class="container-fluid">
-	<div style=" background-color:#C1D9F3; padding:5px" class="form-horizontal">
+<nav style="position: absolute;height:100px;width:150px">12123123</nav>
+<div style="position: relative !important; margin-left:150px;padding:10px" class="container-fluid">
+	<div style="background-color:#C1D9F3;" class="mail-body text-left">
     	<a class="btn btn-default btn-sm" href="del.php?id=<?php echo $row['id']; ?>" >删除</a>
-    </div>
-    <div style="background-color:#eff5fb; padding:10px">
-    	<h4><strong><?php echo $row['title'] ?></strong></h4>
+	</div>
+    <div class="mail-box-header">
+    	<h2><strong>title</strong></h2>
         <table>
         	<tr>
             	<td>发件人</td>
@@ -31,12 +32,14 @@ $row = mysqli_fetch_array($result)
             </tr>
         </table>
     </div>
-    <div style="padding:20px 10px" class="">
-    	<?php echo $row['content']; ?>
+    <div class="mail-box">
+		<div class="mail-body">
+			content
+		</div>
     </div>
-	<div style=" background-color:#C1D9F3; padding:5px" >
+	<div style="background-color:#C1D9F3;" class="mail-body text-left">
     	<a class="btn btn-default btn-sm" href="del.php?id=<?php echo $row['id']; ?>" >删除</a>
-    </div>
+	</div>
 </div>
 </body>
 </html>
