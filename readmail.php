@@ -17,8 +17,7 @@ mysqli_query($conn,$sqlstr);
 
 <body>
 <!--左侧导航栏-->
-<nav style="position: absolute;height:100px;width:150px">12123123</nav>
-<div style="position: relative !important; margin-left:150px;" class="container-fluid">
+<div style="position: relative !important; margin-left:0px;" class="container-fluid">
 	<!--头工具条-->
 	<div class="text-left" style=" background-color:#C1D9F3; padding:5px">
     	<a class="btn btn-default btn-sm" href="del.php?id=<?php echo $row['id']; ?>" >删除</a>
@@ -29,11 +28,11 @@ mysqli_query($conn,$sqlstr);
     	<h2><strong><?php echo $row['title'] ?></strong></h2>
         <table>
         	<tr>
-            	<td>发件人</td>
+            	<td class="text-right">发件人:&ensp;&nbsp; </td>
             	<td><?php echo $row['sender']; ?></td>
             </tr>
         	<tr>
-            	<td>时间</td>
+            	<td class="text-right">时间:&ensp;&nbsp; </td>
             	<td><?php echo $row['stime']; ?></td>
             </tr>
         </table>

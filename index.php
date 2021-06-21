@@ -8,72 +8,71 @@
 <!--<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />-->
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 <script type="text/javascript">
-        function del(id){
-            if(confirm("您确定要删除吗？")){
-                //location.href="del.php?id="+id;
-				$.ajax({
-					   url:"del.php",
-					   type:"POST",
-					   data:{id:id},
-					   success:function(result) {
-						   alert(result);
-						   location.reload();
-					   }
-					   });
-            }
-        }
-		function SortTable(obj) {
-			if(obj.innerHTML == "发件人") {
-				location.href='index.php?order=name';
-			} else if(obj.innerHTML == "时间") {
-				location.href='index.php?order=time';	
+	function delall() {
+		if(confirm("您确定要删除选中条目吗？")){
+		   var flag = false;
+			var cbs = document.getElementsByName("chk[]");
+			for (var i = 0; i < cbs.length; i++) {
+				if(cbs[i].checked){
+					flag = true;
+					break;
+				}
 			}
-			
+			if(flag){
+				document.getElementById("form").submit();
+			}
 		}
-		$(function(){
-			var table= $("#myTable").DataTable({
-				searching: false,
-    			ordering:  false,
-				bLengthChange: false,
-				bFilter: false,
-				bSort: false,
-				bInfo: false});
-		});
-        window.onload = function(){
-            document.getElementById("delSelected").onclick = function(){
-                if(confirm("您确定要删除选中条目吗？")){
-                   var flag = false;
-                    var cbs = document.getElementsByName("chk[]");
-                    for (var i = 0; i < cbs.length; i++) {
-                        if(cbs[i].checked){
-                            flag = true;
-                            break;
-                        }
-                    }
-                    if(flag){
-                        document.getElementById("form").submit();
-                    }
-                }
-            }
-            document.getElementById("firstCb").onclick = function(){
-                var cbs = document.getElementsByName("chk[]");
-                for (var i = 0; i < cbs.length; i++) {
-                    cbs[i].checked = this.checked;
-                }
-            }
-        }
-    </script>
+	}
+	function del(id){
+		if(confirm("您确定要删除吗？")){
+			//location.href="del.php?id="+id;
+			$.ajax({
+				   url:"del.php",
+				   type:"POST",
+				   data:{id:id},
+				   success:function(result) {
+					   alert(result);
+					   location.reload();
+				   }
+				   });
+		}
+	}
+	function SortTable(obj) {
+		if(obj.innerHTML == "发件人") {
+			location.href='index.php?order=name';
+		} else if(obj.innerHTML == "时间") {
+			location.href='index.php?order=time';	
+		}
+		
+	}
+	$(function(){
+		var table= $("#myTable").DataTable({
+			searching: false,
+			ordering:  false,
+			bLengthChange: false,
+			bFilter: false,
+			bSort: false,
+			bInfo: false,
+			bAutoWidth: false});
+	});
+	window.onload = function(){
+		document.getElementById("firstCb").onclick = function(){
+			var cbs = document.getElementsByName("chk[]");
+			for (var i = 0; i < cbs.length; i++) {
+				cbs[i].checked = this.checked;
+			}
+		}
+	}
+</script>
 </head>
 
 <body>
 <?php
 include_once("conn/conn.php");
 ?>
-<!--左侧导航栏-->
-<nav style="position: absolute;height:100px;width:150px;display:block">121231231231231</nav>
-<div style="position: relative !important; margin-left:150px;" class="container-fluid">
+<div style="position: relative !important; margin-left:0px;" class="container-fluid">
 	<!--头工具条-->
-	<div style="padding:5px;"> <a class="btn btn-default btn-sm" href="javascript:void(0);" id="delSelected">删除选中</a></div>
+	<div style="padding:5px;"> <a class="btn btn-default btn-sm" href="javascript:void(0);" onclick="delall()">删除选中</a></div>
     <!--邮件信息-->
 	<form id="form" action="del.php" method="post">
         <table id="myTable" class="table table-hover table-condensed">
@@ -117,7 +116,7 @@ include_once("conn/conn.php");
     </table>
     </form>
 	<!--尾工具条-->
-	<div style="padding:5px;"> <a class="btn btn-default btn-sm" href="javascript:void(0);" id="delSelected">删除选中</a></div>
+	<div style="padding:5px;"> <a class="btn btn-default btn-sm" href="javascript:void(0);" onclick="delall()">删除选中</a></div>
 </div>
 </body>
 </html>
