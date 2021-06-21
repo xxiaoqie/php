@@ -6,3 +6,5 @@ CREATE TABLE receive(
   content varchar(200),
   isread tinyint(1)
   )
+
+INSERT INTO receive(sender,title,stime,content,isread) VALUES('xxiaoqie','hello','2021/06/21','Content here',0);
