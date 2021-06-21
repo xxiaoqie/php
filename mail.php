@@ -39,9 +39,9 @@
 	}
 	function SortTable(obj) {
 		if(obj.innerHTML == "发件人") {
-			location.href='index.php?order=name';
+			location.href='mail.php?order=name';
 		} else if(obj.innerHTML == "时间") {
-			location.href='index.php?order=time';	
+			location.href='mail.php?order=time';	
 		}
 		
 	}
